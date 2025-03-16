@@ -4,15 +4,13 @@ import Input from '@/components/Input';
 import GameCard from '@/components/GameCard';
 
 async function getData(title: string) {
-  console.log('Param: ' + title);
-
   try {
     const decodeTitle = decodeURI(title);
     const res = await fetch(`${process.env.NEXT_API_URL}/next-api?api=game&title=${decodeTitle}`);
     return res.json();
 
   } catch (error) {
-    return null;
+    throw new Error('Failed to fetch data');
   }
 }
 
